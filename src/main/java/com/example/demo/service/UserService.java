@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +21,17 @@ public class UserService {
     }
 
     public User getUserByEmail(String emailId) {
-        return userRepository.findByEmail(emailId);
+        return userRepository.findUserByEmail(emailId);
     }
 
-//    public User getUserByUserId(Long userId) {
-//        User x = userRepository.findUserByIdWithin(userId);
-//        System.out.println("getbyid" + x);
-//        return x;
-//    }
+    public User getUserById(Long userId) {
+        return userRepository.findUserById(userId);
+    }
 
     public User createUser(User user) {
+        return userRepository.save(user);
+    }
+    public User updateUser(User user) {
         return userRepository.save(user);
     }
 
