@@ -1,16 +1,24 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@Data
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+    @Column(unique = true, nullable = false)
     private String email;
 
     //Constructor
@@ -20,8 +28,9 @@ public class User {
         this.email = email;
     }
 
-    // Constructors, getters, and setters
-    public User() {}
+    public User() {
+
+    }
 
     @Override
     public String toString() {
@@ -30,35 +39,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }
 
